@@ -16,10 +16,7 @@ const authenticate = async (req, res, next) => {
     if (!user || !user.token) {
       throw createError(401, 'Not authorized');
     }
-    // const props = user.role === 'admin' ? {} : { owner: user._id };
-    // const notes = await Note.find(props).populate('owner', 'email login role');
     req.user = user;
-    // req.user.notes = notes;
     next();
   } catch (error) {
     if (!error.status) {
